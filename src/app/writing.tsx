@@ -29,16 +29,16 @@ export default function Writing(){
         }
     },[])
 
-    return(<div className="relative mt-8 w-full h-36 flex flex-row items-top justify-between mix-blend-difference">
+    return(<div className="relative mt-8 w-full h-36 flex flex-row items-top justify-between">
         <div className="relative w-0 overflow-hidden scale-110 origin-left transition-all ease-out duration-1200" ref={leftside}>
             <div className=" mx-6 text-left text-white/80 w-[45vw]">
             A luxury clothing house that unites timeless elegance with modern sophistication. Each design is 
              crafted with precision to inspire confidence, grace, and beauty, offering more than fashion — a true statement of refined
               living.</div>
         </div>
-        <div className={` ${cormorant.className} mx-4 text-4xl w-1/3 max-w-100 text-white/80`}>
-        <div className="w-0 whitespace-nowrap overflow-hidden transition-all duration-1500" ref={rightside1}>DESIGNED TO MAKE AN</div>
-        <div className="w-0 relative left-1/2 overflow-hidden transition-all duration-1500" ref={rightside2}>ENTRANCE</div>
+        <div className={` ${cormorant.className} mx-4 text-4xl w-1/3 max-w-85 text-white/80`}>
+        <div className="w-0 whitespace-nowrap overflow-hidden transition-all duration-1500" ref={rightside1}>DESIGNED TO MAKE</div>
+        <div className="w-0 whitespace-nowrap relative ml-20 overflow-hidden transition-all duration-1500" ref={rightside2}>AN ENTRANCE</div>
         </div>
     </div>)
 }
