@@ -1,5 +1,5 @@
 "use client";
-import React,{useRef, useState, useEffect} from "react";
+import React,{useRef, useState, useEffect, useLayoutEffect} from "react";
 
 type outfits = {
     active: boolean,
@@ -8,8 +8,18 @@ type outfits = {
 }
 
 export default function Scroller(){
-
+                                                            //Create an array of colors stored in gradienttest
     const outfitgender = "Outfit-M";
+
+    const colors = ["before:bg-[url('/Background/bg-1.png')] scale-110 translate-y-100 translate-x-160 opacity-0",
+                    "before:bg-[url('/Background/bg-2.png')] scale-110 translate-y-100 translate-x-80 opacity-0",
+                    "before:bg-[url('/Background/bg-3.png')] scale-140 translate-y-100 opacity-0",
+                    "before:bg-[url('/Background/bg-4.png')] scale-110 translate-y-100 -translate-x-80 opacity-0",
+                    "before:bg-[url('/Background/bg-5.png')] scale-110 translate-y-100 -translate-x-160 opacity-0",
+                    null, null,
+                    null, null,
+                    null, null,
+                    null];
 
     const Outfits = useRef<outfits[]>([
         {active:false, src:`/${outfitgender}/outfit1.png`, inputref: null},
@@ -37,41 +47,37 @@ export default function Scroller(){
             console.log(Outfits.current);
             const active = Outfits.current[index.current];
         if(active?.inputref){
-            active.inputref.classList.remove("scale-110");
-            active.inputref.classList.remove("scale-100");
-            active.inputref.classList.add("scale-130");
+            active.inputref.classList.remove("scale-110","scale-100");
+            active.inputref.classList.add("scale-140");
+            active.inputref.style.zIndex = "3";
         }
         const prev1 = Outfits.current[index.current-1];
         if(prev1?.inputref){
-            prev1.inputref.classList.remove("scale-100");
-            prev1.inputref.classList.remove("scale-130");
+            prev1.inputref.classList.remove("scale-100","scale-140");
             prev1.inputref.classList.add("scale-110");
+            prev1.inputref.style.zIndex = "2";
         }
         const prev2 = Outfits.current[index.current-2];
         if(prev2?.inputref){
-            prev2.inputref.classList.remove("scale-110");
-            prev2.inputref.classList.remove("scale-130");
+            prev2.inputref.classList.remove("scale-110","scale-140");
             prev2.inputref.classList.add("scale-100");
+            prev2.inputref.style.zIndex = "1";
         }
         const news1 = Outfits.current[index.current+1];
         if(news1?.inputref){
-            news1.inputref.classList.remove("scale-100");
-            news1.inputref.classList.remove("scale-130");
+            news1.inputref.classList.remove("scale-100","scale-140");
             news1.inputref.classList.add("scale-110");
+            news1.inputref.style.zIndex = "2";
         }
         const news2 = Outfits.current[index.current+2];
         if(news2?.inputref){
-            news2.inputref.classList.remove("scale-110");
-            news2.inputref.classList.remove("scale-130");
+            news2.inputref.classList.remove("scale-110","scale-140");
             news2.inputref.classList.add("scale-100");
+            news2.inputref.style.zIndex = "1";
         }
         }
     }
 
-    useEffect(()=>{
-        OnStartUp();
-    },[])
-    
     function MoveLeft(){
         console.log("scroll right to go left");
         if(index.current !== null){
@@ -92,11 +98,8 @@ export default function Scroller(){
                     console.log("scroller move left");
                     Scrollerref.current.style.transform = `translateX(${position.current + 320}px)`;
                     position.current+=320;
-                }
-            }
+                }}}}
 
-        }
-    }
     function MoveRight(){
         console.log("scroll left to go right");
             console.log("it should move right");
@@ -117,20 +120,67 @@ export default function Scroller(){
                     console.log("scroller move right");
                     Scrollerref.current.style.transform = `translateX(${position.current - 320}px)`;
                     position.current-=320;
-                }
-            }
+                }}}}
 
-        }
-    }
+    useLayoutEffect(()=>{
+        OnStartUp(); 
+        const index = Outfits.current.findIndex((element) => element.active);
+            Outfits.current[index].inputref?.classList.remove("opacity-0","translate-y-100");
+            Outfits.current[index-1].inputref?.classList.remove("translate-y-100");
+            Outfits.current[index-1].inputref?.classList.add("translate-y-20");
+            Outfits.current[index-2].inputref?.classList.remove("translate-y-100");
+            Outfits.current[index-2].inputref?.classList.add("translate-y-30");
+            Outfits.current[index+1].inputref?.classList.remove("translate-y-100");
+            Outfits.current[index+1].inputref?.classList.add("translate-y-20");
+            Outfits.current[index+2].inputref?.classList.remove("translate-y-100");
+            Outfits.current[index+2].inputref?.classList.add("translate-y-30");
+
+            setTimeout(()=>{
+            Outfits.current[index-1].inputref?.classList.remove("translate-y-20","translate-x-80","opacity-0");
+            Outfits.current[index-1].inputref?.classList.add("translate-y-0");
+            Outfits.current[index-2].inputref?.classList.remove("translate-y-30","translate-x-160");
+            Outfits.current[index-2].inputref?.classList.add("translate-y-10","translate-x-80");
+            Outfits.current[index+1].inputref?.classList.remove("translate-y-20","-translate-x-80","opacity-0");
+            Outfits.current[index+1].inputref?.classList.add("translate-y-0");
+            Outfits.current[index+2].inputref?.classList.remove("translate-y-30","-translate-x-160");
+            Outfits.current[index+2].inputref?.classList.add("translate-y-10","-translate-x-80");     
+
+            setTimeout(()=>{
+                Outfits.current[index-2].inputref?.classList.remove("translate-y-10","translate-x-80","opacity-0");
+                Outfits.current[index+2].inputref?.classList.remove("translate-y-10","-translate-x-80","opacity-0");
+
+            setTimeout(()=>{MoveRight();},800)     //Start from here move it after the bg change, black screen and the lower scrollbar appear
+            },700)
+            },1000)
+
+
+
+
+            
+
+        Outfits.current.map(element => {element.inputref?.classList.remove("transition-none"); element.inputref?.classList.add("transition-all"); element.inputref?.classList.add("duration-1000")});
+    },[])
+    useEffect(()=>{
+
+        setTimeout(() => {
+            Outfits.current.map((element) => {
+                element.inputref?.classList.remove("before:opacity-90");
+                element.inputref?.classList.add("before:opacity-0");
+            })},3200)
+    },[])
+    
+
 
 
     return(<div className="relative mt-20 w-full h-100 flex justify-center items-center">
 
-        <div className="relative flex flex-row gap-10 w-390 h-100 transition-transform duration-1000 ease-in-out" ref={Scrollerref}>
+        <div className="relative flex flex-row gap-10 w-390 h-100 transition-transform duration-1000 ease-in-out
+        [transform-style:preserve-3d] [perspective:1000px]" ref={Scrollerref}>
         {Outfits.current.map((element, index) =>(
             <div className={`relative flex-none flex justify-center items-center w-70 h-full
-            transition-all duration-1000 origin-top rounded-lg shadow-md
-             bg-[linear-gradient(75deg,hsl(200, 100%, 75%),hsl(0, 0%, 100%))]`} key={index}  
+            origin-top transition-none rounded-lg before:absolute before:inset-0 before:brightness-150
+              before:opacity-90 overflow-hidden before:transition-all before:duration-600
+             ${colors[index]}`} key={index}  
              ref={(el) => {Outfits.current[index].inputref = el}}
             >
                 <img className="relative w-full h-auto" src={element.src} alt={element.src} />

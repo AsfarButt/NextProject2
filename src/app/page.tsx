@@ -9,7 +9,7 @@ export default function LandingPage(){
 
   const [theme, settheme] = useState(false);
   useEffect(() => {
-      setTimeout(()=>settheme(true),2000);
+      setTimeout(()=>settheme(true),3400);
   },[])
 
   return(<div className={`relative w-screen h-screen bg-white before:absolute before:z-0 before:w-full before:bg-black
