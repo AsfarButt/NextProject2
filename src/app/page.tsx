@@ -2,6 +2,7 @@
 import Header from "./header";
 import Writing from "./writing";
 import Scroller from "./scroller";
+import Scroller2 from "./scroller2";
 import React,{useEffect, useRef, useState} from "react";
 
 
@@ -17,6 +18,7 @@ export default function LandingPage(){
     <Header className=""/>
     <Writing />
     <Scroller />
+    <Scroller2 />
 
   </div>)
 

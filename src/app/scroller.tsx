@@ -11,15 +11,24 @@ export default function Scroller(){
                                                             //Create an array of colors stored in gradienttest
     const outfitgender = "Outfit-M";
 
-    const colors = ["before:bg-[url('/Background/bg-1.png')] scale-110 translate-y-100 translate-x-160 opacity-0",
-                    "before:bg-[url('/Background/bg-2.png')] scale-110 translate-y-100 translate-x-80 opacity-0",
-                    "before:bg-[url('/Background/bg-3.png')] scale-140 translate-y-100 opacity-0",
-                    "before:bg-[url('/Background/bg-4.png')] scale-110 translate-y-100 -translate-x-80 opacity-0",
-                    "before:bg-[url('/Background/bg-5.png')] scale-110 translate-y-100 -translate-x-160 opacity-0",
-                    null, null,
-                    null, null,
-                    null, null,
-                    null];
+    const [bgactive, setbgactive] = useState(true);
+
+    const bgcolors = [`${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-1.png')] rotate-y-35 -translate-z-20`,
+                    `${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-2.png')] rotate-y-20 -translate-z-20`,
+                    `${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-3.png')] rotate-y-0 -translate-z-20`,
+                    `${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-4.png')] -rotate-y-20 -translate-z-20`,
+                    `${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-5.png')] -rotate-y-20 -translate-z-20`,
+                     null, null, null, null, null, null, null];
+
+    const colors = ["translate-y-100 translate-x-160 opacity-0",
+                    "translate-y-8 scale-110 translate-y-100 translate-x-80 opacity-0",
+                    "translate-y-32 scale-118 translate-y-100 opacity-0",
+                    "translate-y-8 scale-110 translate-y-100 -translate-x-80 opacity-0",
+                    " translate-y-100 -translate-x-160 opacity-0",
+                    "opacity-0", "opacity-0",
+                    "opacity-0", "opacity-0",
+                    "opacity-0", "opacity-0",
+                    "opacity-0"];
 
     const Outfits = useRef<outfits[]>([
         {active:false, src:`/${outfitgender}/outfit1.png`, inputref: null},
@@ -47,32 +56,34 @@ export default function Scroller(){
             console.log(Outfits.current);
             const active = Outfits.current[index.current];
         if(active?.inputref){
-            active.inputref.classList.remove("scale-110","scale-100");
-            active.inputref.classList.add("scale-140");
+            active.inputref.classList.replace("translate-y-8","translate-y-32");
+            active.inputref.classList.replace("scale-110","scale-118");
             active.inputref.style.zIndex = "3";
         }
         const prev1 = Outfits.current[index.current-1];
         if(prev1?.inputref){
-            prev1.inputref.classList.remove("scale-100","scale-140");
-            prev1.inputref.classList.add("scale-110");
+            prev1.inputref.classList.replace("scale-110","scale-118");
+            prev1.inputref.classList.replace("translate-y-32","translate-y-8");
+            prev1.inputref.classList.add("scale-110","translate-y-8");
             prev1.inputref.style.zIndex = "2";
         }
         const prev2 = Outfits.current[index.current-2];
         if(prev2?.inputref){
-            prev2.inputref.classList.remove("scale-110","scale-140");
-            prev2.inputref.classList.add("scale-100");
+            prev2.inputref.classList.remove("translate-y-8");
+             prev2.inputref.classList.remove("scale-110");
             prev2.inputref.style.zIndex = "1";
         }
         const news1 = Outfits.current[index.current+1];
         if(news1?.inputref){
-            news1.inputref.classList.remove("scale-100","scale-140");
-            news1.inputref.classList.add("scale-110");
+            news1.inputref.classList.replace("scale-110","scale-118");
+            news1.inputref.classList.replace("translate-y-32","translate-y-8");
+            news1.inputref.classList.add("scale-110","translate-y-8");
             news1.inputref.style.zIndex = "2";
         }
         const news2 = Outfits.current[index.current+2];
         if(news2?.inputref){
-            news2.inputref.classList.remove("scale-110","scale-140");
-            news2.inputref.classList.add("scale-100");
+            news2.inputref.classList.remove("translate-y-8");
+            news2.inputref.classList.remove("scale-110");
             news2.inputref.style.zIndex = "1";
         }
         }
@@ -96,8 +107,8 @@ export default function Scroller(){
                 //Scroller move
                 if(Scrollerref.current){
                     console.log("scroller move left");
-                    Scrollerref.current.style.transform = `translateX(${position.current + 320}px)`;
-                    position.current+=320;
+                    Scrollerref.current.style.transform = `translateX(${position.current + 340}px)`;
+                    position.current+=340;
                 }}}}
 
     function MoveRight(){
@@ -118,8 +129,8 @@ export default function Scroller(){
                 //Scroller move
                 if(Scrollerref.current){
                     console.log("scroller move right");
-                    Scrollerref.current.style.transform = `translateX(${position.current - 320}px)`;
-                    position.current-=320;
+                    Scrollerref.current.style.transform = `translateX(${position.current - 340}px)`;
+                    position.current-=340;
                 }}}}
 
     useLayoutEffect(()=>{
@@ -127,20 +138,20 @@ export default function Scroller(){
         const index = Outfits.current.findIndex((element) => element.active);
             Outfits.current[index].inputref?.classList.remove("opacity-0","translate-y-100");
             Outfits.current[index-1].inputref?.classList.remove("translate-y-100");
-            Outfits.current[index-1].inputref?.classList.add("translate-y-20");
+            Outfits.current[index-1].inputref?.classList.add("translate-y-30");
             Outfits.current[index-2].inputref?.classList.remove("translate-y-100");
             Outfits.current[index-2].inputref?.classList.add("translate-y-30");
             Outfits.current[index+1].inputref?.classList.remove("translate-y-100");
-            Outfits.current[index+1].inputref?.classList.add("translate-y-20");
+            Outfits.current[index+1].inputref?.classList.add("translate-y-30");
             Outfits.current[index+2].inputref?.classList.remove("translate-y-100");
             Outfits.current[index+2].inputref?.classList.add("translate-y-30");
 
             setTimeout(()=>{
-            Outfits.current[index-1].inputref?.classList.remove("translate-y-20","translate-x-80","opacity-0");
+            Outfits.current[index-1].inputref?.classList.remove("translate-y-30","translate-x-80","opacity-0");
             Outfits.current[index-1].inputref?.classList.add("translate-y-0");
             Outfits.current[index-2].inputref?.classList.remove("translate-y-30","translate-x-160");
             Outfits.current[index-2].inputref?.classList.add("translate-y-10","translate-x-80");
-            Outfits.current[index+1].inputref?.classList.remove("translate-y-20","-translate-x-80","opacity-0");
+            Outfits.current[index+1].inputref?.classList.remove("translate-y-30","-translate-x-80","opacity-0");
             Outfits.current[index+1].inputref?.classList.add("translate-y-0");
             Outfits.current[index+2].inputref?.classList.remove("translate-y-30","-translate-x-160");
             Outfits.current[index+2].inputref?.classList.add("translate-y-10","-translate-x-80");     
@@ -149,8 +160,11 @@ export default function Scroller(){
                 Outfits.current[index-2].inputref?.classList.remove("translate-y-10","translate-x-80","opacity-0");
                 Outfits.current[index+2].inputref?.classList.remove("translate-y-10","-translate-x-80","opacity-0");
 
-            setTimeout(()=>{MoveRight();},800)     //Start from here move it after the bg change, black screen and the lower scrollbar appear
-            },700)
+            setTimeout(()=>{
+                {Outfits.current.map((element) => element.inputref?.classList.remove("opacity-0"));
+            setbgactive(false);}
+            },1300)     //Start from here move it after the bg change, black screen and the lower scrollbar appear
+            },800)                                  //Also add the tilted bg
             },1000)
 
 
@@ -172,25 +186,23 @@ export default function Scroller(){
 
 
 
-    return(<div className="relative mt-20 w-full h-100 flex justify-center items-center">
+    return(<div className="relative mt-20 w-full h-150 flex justify-center items-top bg-black/40">
 
-        <div className="relative flex flex-row gap-10 w-390 h-100 transition-transform duration-1000 ease-in-out
-        [transform-style:preserve-3d] [perspective:1000px]" ref={Scrollerref}>
+        <div className="relative flex flex-row gap-15 w-410 h-100 transition-transform duration-1000 ease-in-out " ref={Scrollerref}>
         {Outfits.current.map((element, index) =>(
             <div className={`relative flex-none flex justify-center items-center w-70 h-full
-            origin-top transition-none rounded-lg before:absolute before:inset-0 before:brightness-150
-              before:opacity-90 overflow-hidden before:transition-all before:duration-600
+            origin-top rounded-lg [transform-style:preserve-3d] [perspective:1000px]
              ${colors[index]}`} key={index}  
              ref={(el) => {Outfits.current[index].inputref = el}}
-            >
+            >   <div className={`absolute inset-0 rounded-xl transition-all duration-800 ${bgcolors[index]}`}></div>
                 <img className="relative w-full h-auto" src={element.src} alt={element.src} />
             </div>
         ))}
         </div>
-        <div className="absolute w-full h-16 flex justify-between items-center bg-black/30 text-4xl text-white/80 mix-blend-difference
+        <div className="absolute w-full h-16 flex justify-between items-center text-4xl text-white/80 mix-blend-difference
         px-4 border-box z-2">
-            <div className="cursor-pointer" onClick={MoveLeft}>〈</div>
-            <div className="cursor-pointer" onClick={MoveRight}>〉</div>
+            <div className={`cursor-pointer ${(bgactive)?"pointer-events-none opacity-0":"pointer-events-auto"}`} onClick={MoveLeft}>〈</div>
+            <div className={`cursor-pointer ${(bgactive)?"pointer-events-none opacity-0":"pointer-events-auto"}`} onClick={MoveRight}>〉</div>
         </div>
 
     </div>)
