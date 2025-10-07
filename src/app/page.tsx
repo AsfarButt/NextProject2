@@ -9,6 +9,9 @@ import React,{useEffect, useRef, useState} from "react";
 export default function LandingPage(){
 
   const [theme, settheme] = useState(false);
+  // const [Left, setLeft] = useState(0);
+  // const [Right, setRight] = useState(0);
+
   useEffect(() => {
       setTimeout(()=>settheme(true),3400);
   },[])
@@ -17,8 +20,8 @@ export default function LandingPage(){
   before:transition-all before:duration-1000 ${theme? "before:h-0":"before:h-full"}`}>
     <Header className=""/>
     <Writing />
-    <Scroller />
-    <Scroller2 />
+    <Scroller/>
+    {/* <Scroller2 ScrollLeft={Left} ScrollRight={Right}/> */}
 
   </div>)
 
