@@ -17,7 +17,7 @@ export default function LandingPage(){
   },[])
 
   return(<div className={`relative w-screen h-screen bg-white before:absolute before:z-0 before:w-full before:bg-black
-  before:transition-all before:duration-1000 ${theme? "before:h-0":"before:h-full"}`}>
+  before:transition-all before:duration-1000 ${theme? "before:h-0":"before:h-full"} overflow-hidden`}>
     <Header className=""/>
     <Writing />
     <Scroller/>

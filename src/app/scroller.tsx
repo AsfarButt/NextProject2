@@ -23,30 +23,30 @@ export default function Scroller(){
                     `${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-5.png')] -rotate-y-20 -translate-z-20`,
                      null, null, null, null, null, null, null];
 
-    const colors = ["translate-y-100 translate-x-160 opacity-0 ml-[30px]",
-                    "translate-y-8 scale-110 translate-y-100 translate-x-80 opacity-0",
-                    "translate-y-32 scale-118 translate-y-100 opacity-0",
-                    "translate-y-8 scale-110 translate-y-100 -translate-x-80 opacity-0",
-                    " translate-y-100 -translate-x-160 opacity-0",
+    const colors = ["translate-y-150 translate-x-160 opacity-0 ml-[30px]",
+                    "translate-y-8 scale-110 translate-y-150 translate-x-80 opacity-0",
+                    "translate-y-32 scale-118 translate-y-150 opacity-0",
+                    "translate-y-8 scale-110 translate-y-150 -translate-x-80 opacity-0",
+                    " translate-y-150 -translate-x-160 opacity-0",
                     "opacity-0", "opacity-0",
                     "opacity-0", "opacity-0",
                     "opacity-0", "opacity-0",
                     "opacity-0"];
 
-    const OutfitsScrl2 = [
-    ["/Outfit-M/outfit1.png", "Classic White Tee", "$18","/Background2/bg-1.png"],
-    ["/Outfit-M/outfit2.png", "Black Graphic Tee", "$22","/Background2/bg-2.png"],
-    ["/Outfit-M/outfit3.png", "Vintage Wash Tee", "$25","/Background2/bg-3.png"],
-    ["/Outfit-M/outfit4.png", "Striped Cotton Tee", "$20","/Background2/bg-4.png"],
-    ["/Outfit-M/outfit5.png", "Oversized Streetwear Tee", "$28","/Background2/bg-5.png"],
-    ["/Outfit-M/outfit6.png", "Minimal Logo Tee", "$24","/Background2/bg-6.png"],
-    ["/Outfit-M/outfit7.png", "Heather Grey Crewneck", "$19","/Background2/bg-7.png"],
-    ["/Outfit-M/outfit8.png", "Retro Print Tee", "$27","/Background2/bg-8.png"],
-    ["/Outfit-M/outfit9.png", "Longline Urban Tee", "$26","/Background2/bg-9.png"],
-    ["/Outfit-M/outfit10.png", "Pocket Tee", "$21","/Background2/bg-10.png"],
-    ["/Outfit-M/outfit11.png", "Tie-Dye Tee", "$23","/Background2/bg-11.png"],
-    ["/Outfit-M/outfit12.png", "Athletic Fit Tee", "$30","/Background2/bg-12.png"],   //Start with this do whatever is right as you go
-    ];
+const OutfitsScrl2 = [
+  ["/Outfit-M/outfit1.png", "Classic White Tee", "$18", "4.5", "/Background2/bg-1.png"],
+  ["/Outfit-M/outfit2.png", "Black Graphic Tee", "$22", "4.2", "/Background2/bg-2.png"],
+  ["/Outfit-M/outfit3.png", "Vintage Wash Tee", "$25", "4.8", "/Background2/bg-3.png"],
+  ["/Outfit-M/outfit4.png", "Striped Cotton Tee", "$20", "4.0", "/Background2/bg-4.png"],
+  ["/Outfit-M/outfit5.png", "Oversized Streetwear Tee", "$28", "4.7", "/Background2/bg-5.png"],
+  ["/Outfit-M/outfit6.png", "Minimal Logo Tee", "$24", "4.3", "/Background2/bg-6.png"],
+  ["/Outfit-M/outfit7.png", "Heather Grey Crewneck", "$19", "4.1", "/Background2/bg-7.png"],
+  ["/Outfit-M/outfit8.png", "Retro Print Tee", "$27", "4.6", "/Background2/bg-8.png"],
+  ["/Outfit-M/outfit9.png", "Longline Urban Tee", "$26", "4.4", "/Background2/bg-9.png"],
+  ["/Outfit-M/outfit10.png", "Pocket Tee", "$21", "4.0", "/Background2/bg-10.png"],
+  ["/Outfit-M/outfit11.png", "Tie-Dye Tee", "$23", "4.2", "/Background2/bg-11.png"],
+  ["/Outfit-M/outfit12.png", "Athletic Fit Tee", "$30", "4.9", "/Background2/bg-12.png"],
+];
 
     const Outfits = useRef<outfits[]>([
         {active:false, src:`/${outfitgender}/outfit1.png`, inputref: null},
@@ -62,6 +62,8 @@ export default function Scroller(){
         {active:false, src:`/${outfitgender}/outfit11.png`, inputref: null},
         {active:false, src:`/${outfitgender}/outfit12.png`, inputref: null}
         ]);
+
+        const scroller = useRef<HTMLDivElement | null>(null);
 
          const index = useRef<number | null>(null);
          const Scrollerref = useRef<HTMLDivElement | null>(null);
@@ -157,14 +159,15 @@ export default function Scroller(){
     useLayoutEffect(()=>{
         OnStartUp(); 
         const index = Outfits.current.findIndex((element) => element.active);
-            Outfits.current[index].inputref?.classList.remove("opacity-0","translate-y-100");
-            Outfits.current[index-1].inputref?.classList.remove("translate-y-100");
+            // Outfits.current[index].inputref?.classList.replace("duration-800","duration-5000");   //also try to make the 1st element pop-up a little more slow hence smooth
+            Outfits.current[index].inputref?.classList.remove("opacity-0","translate-y-150");
+            Outfits.current[index-1].inputref?.classList.remove("translate-y-150");
             Outfits.current[index-1].inputref?.classList.add("translate-y-30");
-            Outfits.current[index-2].inputref?.classList.remove("translate-y-100");
+            Outfits.current[index-2].inputref?.classList.remove("translate-y-150");
             Outfits.current[index-2].inputref?.classList.add("translate-y-30");
-            Outfits.current[index+1].inputref?.classList.remove("translate-y-100");
+            Outfits.current[index+1].inputref?.classList.remove("translate-y-150");
             Outfits.current[index+1].inputref?.classList.add("translate-y-30");
-            Outfits.current[index+2].inputref?.classList.remove("translate-y-100");
+            Outfits.current[index+2].inputref?.classList.remove("translate-y-150");
             Outfits.current[index+2].inputref?.classList.add("translate-y-30");
 
             setTimeout(()=>{
@@ -185,9 +188,10 @@ export default function Scroller(){
                 {Outfits.current.map((element) => element.inputref?.classList.remove("opacity-0"));
             setbgactive(false);
             setTimeout(()=>{
-                if(container.current && Scrollerref.current){
+                if(container.current && scroller.current){
                     // container.current.classList.replace("mt-80","mt-20");
-                    container.current.classList.remove("mt-60");
+                    container.current.classList.replace("-bottom-60","bottom-0");
+                    scroller.current.classList.remove("mt-10");
                     // Scrollerref.current.classList.remove("scale-105");
 
                 }
@@ -218,13 +222,13 @@ export default function Scroller(){
 
 
 
-    return(<div className="relative bottom-0 mt-60 w-full h-240 flex justify-center flex-col items-top transition-all duration-800" ref={container}>
+    return(<div className="absolute -bottom-60 w-full h-screen flex justify-center flex-col items-top transition-all duration-800 " ref={container}>
 
-        <div className="relative w-full h-150 mb-30 flex-none flex items-top justify-center">
-            <div className="relative flex flex-row gap-15 w-425 h-100 transition-transform duration-1000 ease-in-out bg-gray-600" ref={Scrollerref}>
+        <div className="relative transition-all mt-10 mb-10 duration-800 w-full h-200 flex-none flex items-top justify-center border-box" ref={scroller}>
+            <div className="relative flex flex-row gap-15 w-425 h-100 transition-transform duration-1000 ease-in-out" ref={Scrollerref}>
             {Outfits.current.map((element, index) =>(
                 <div className={`relative flex-none flex justify-center items-center w-70 h-full
-                origin-top rounded-lg [transform-style:preserve-3d] [perspective:1000px] bg-black/40
+                origin-top rounded-lg [transform-style:preserve-3d] [perspective:1000px]
                 ${colors[index]}`} key={index}  
                 ref={(el) => {Outfits.current[index].inputref = el}}
                 >   <div className={`absolute inset-0 rounded-xl transition-all duration-800 ${bgcolors[index]}`}></div>
@@ -240,16 +244,18 @@ export default function Scroller(){
         </div>
 
     <div className="relative border border-transparent w-full h-60 flex-none flex justify-center transition-all duration-800" ref={Scroller2ref}>
-            <div className="relative w-425 h-full flex flex-row transition-all duration-1200">
+            <div className="relative w-425 h-full flex flex-row transition-all duration-2000">
                 {OutfitsScrl2.map((element, index) => 
                     (<div className="relative h-full flex-none flex flex-col w-85 overflow-hidden" key={index}>
                         <div className=""></div>   
                         {/* here make a hear tricon already downloaded and onClick change its src to fully filled one also do this without state using atts of onClick eg: (el) => el.currentTarget.bg.src ="" ijgiseagie etc etc */}
                         <img src={element[0]} className="relative z-1 w-full top-[-38px]"/>
-                        <img src={element[3]} className="absolute z-0 inset-0 blur-[1px] brightness-75 opacity-90" alt={`${index+1}`}/>
-                        <div className="absolute text-xl bottom-0 h-[50%] z-2 w-full bg-black text-white/80 font-sans">
-                        <h1>{element[1]}</h1>
-                        <h2 className="text-lg">{element[2]}</h2></div>
+                        <img src={element[4]} className="absolute z-0 inset-0 blur-[1px] brightness-75 opacity-90" alt={`${index+1}`}/>
+                        <div className="absolute text-xl bottom-0 h-[38%] z-2 w-full bg-blue-100 brightness-175">
+                            <div className="flex justify-between">
+                        <h1 className="font-semibold px-2 inline-block text-lg">{element[1]}</h1>
+                        <h2 className="font-bold px-4 inline-block text-2xl">{element[2]}</h2></div>
+                        <h3>{element[3]}</h3></div>
                     </div>))}
             </div>
         </div>
