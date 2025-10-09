@@ -160,6 +160,7 @@ const OutfitsScrl2 = [
         OnStartUp(); 
         const index = Outfits.current.findIndex((element) => element.active);
             // Outfits.current[index].inputref?.classList.replace("duration-800","duration-5000");   //also try to make the 1st element pop-up a little more slow hence smooth
+            setTimeout(()=>{
             Outfits.current[index].inputref?.classList.remove("opacity-0","translate-y-150");
             Outfits.current[index-1].inputref?.classList.remove("translate-y-150");
             Outfits.current[index-1].inputref?.classList.add("translate-y-30");
@@ -188,10 +189,12 @@ const OutfitsScrl2 = [
                 {Outfits.current.map((element) => element.inputref?.classList.remove("opacity-0"));
             setbgactive(false);
             setTimeout(()=>{
-                if(container.current && scroller.current){
+                if(container.current && scroller.current && Scroller2ref.current){
                     // container.current.classList.replace("mt-80","mt-20");
                     container.current.classList.replace("-bottom-60","bottom-0");
                     scroller.current.classList.remove("mt-10");
+                    Scroller2ref.current.classList.remove("opacity-0");
+
                     // Scrollerref.current.classList.remove("scale-105");
 
                 }
@@ -199,6 +202,8 @@ const OutfitsScrl2 = [
             },1300)     //Start from here move it after the bg change, black screen and the lower scrollbar appear
             },800)                                  //Also add the tilted bg
             },1000)
+            },1000)
+
 
 
 
@@ -243,8 +248,8 @@ const OutfitsScrl2 = [
             </div>
         </div>
 
-    <div className="relative border border-transparent w-full h-60 flex-none flex justify-center transition-all duration-800" ref={Scroller2ref}>
-            <div className="relative w-425 h-full flex flex-row transition-all duration-2000">
+    <div className="relative border border-transparent opacity-0 w-full h-60 flex-none flex justify-center transition-transform duration-1100" ref={Scroller2ref}>
+            <div className="relative w-425 h-full flex flex-row transition-all duration-800">
                 {OutfitsScrl2.map((element, index) => 
                     (<div className="relative h-full flex-none flex flex-col w-85 overflow-hidden" key={index}>
                         <div className=""></div>   
