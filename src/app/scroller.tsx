@@ -8,8 +8,8 @@ type outfits = {
 }
 
 export default function Scroller(){
-                                                            //Create an array of colors stored in gradienttest
-    const outfitgender = "Outfit-M";
+                                              
+    const outfitgender = "Outfit-M";   //Use this to toggle bw clothes;
 
     const container = useRef<HTMLDivElement | null>(null);
     const Scroller2ref = useRef<HTMLDivElement | null>(null);
@@ -34,18 +34,18 @@ export default function Scroller(){
                     "opacity-0"];
 
 const OutfitsScrl2 = [
-  ["/Outfit-M/outfit1.png", "Classic White Tee", "$18", "4.5", "/Background2/bg-1.png"],
-  ["/Outfit-M/outfit2.png", "Black Graphic Tee", "$22", "4.2", "/Background2/bg-2.png"],
-  ["/Outfit-M/outfit3.png", "Vintage Wash Tee", "$25", "4.8", "/Background2/bg-3.png"],
-  ["/Outfit-M/outfit4.png", "Striped Cotton Tee", "$20", "4.0", "/Background2/bg-4.png"],
-  ["/Outfit-M/outfit5.png", "Oversized Streetwear Tee", "$28", "4.7", "/Background2/bg-5.png"],
-  ["/Outfit-M/outfit6.png", "Minimal Logo Tee", "$24", "4.3", "/Background2/bg-6.png"],
-  ["/Outfit-M/outfit7.png", "Heather Grey Crewneck", "$19", "4.1", "/Background2/bg-7.png"],
-  ["/Outfit-M/outfit8.png", "Retro Print Tee", "$27", "4.6", "/Background2/bg-8.png"],
-  ["/Outfit-M/outfit9.png", "Longline Urban Tee", "$26", "4.4", "/Background2/bg-9.png"],
-  ["/Outfit-M/outfit10.png", "Pocket Tee", "$21", "4.0", "/Background2/bg-10.png"],
-  ["/Outfit-M/outfit11.png", "Tie-Dye Tee", "$23", "4.2", "/Background2/bg-11.png"],
-  ["/Outfit-M/outfit12.png", "Athletic Fit Tee", "$30", "4.9", "/Background2/bg-12.png"],
+  [`/${outfitgender}/outfit1.png`, "Classic White Tee", "$18", "4.5", "/Background2/bg-1.png"],
+  [`/${outfitgender}/outfit2.png`, "Black Graphic Tee", "$22", "4.2", "/Background2/bg-2.png"],
+  [`/${outfitgender}/outfit3.png`, "Vintage Wash Tee", "$25", "4.8", "/Background2/bg-3.png"],
+  [`/${outfitgender}/outfit4.png`, "Striped Cotton Tee", "$20", "4.0", "/Background2/bg-4.png"],
+  [`/${outfitgender}/outfit5.png`, "Oversized Streetwear Tee", "$28", "4.7", "/Background2/bg-5.png"],
+  [`/${outfitgender}/outfit6.png`, "Minimal Logo Tee", "$24", "4.3", "/Background2/bg-6.png"],
+  [`/${outfitgender}/outfit7.png`, "Heather Grey Crewneck", "$19", "4.1", "/Background2/bg-7.png"],
+  [`/${outfitgender}/outfit8.png`, "Retro Print Tee", "$27", "4.6", "/Background2/bg-8.png"],
+  [`/${outfitgender}/outfit9.png`, "Longline Urban Tee", "$26", "4.4", "/Background2/bg-9.png"],
+  [`/${outfitgender}/outfit10.png`, "Pocket Tee", "$21", "4.0", "/Background2/bg-10.png"],
+  [`/${outfitgender}/outfit11.png`, "Tie-Dye Tee", "$23", "4.2", "/Background2/bg-11.png"],
+  [`/${outfitgender}/outfit12.png`, "Athletic Fit Tee", "$30", "4.9", "/Background2/bg-12.png"],
 ];
 
     const Outfits = useRef<outfits[]>([
@@ -196,7 +196,7 @@ const OutfitsScrl2 = [
                     Scroller2ref.current.classList.remove("opacity-0");
 
                     // Scrollerref.current.classList.remove("scale-105");
-
+                setTimeout(()=>{MoveRight()},1000)
                 }
             },700)}
             },1300)     //Start from here move it after the bg change, black screen and the lower scrollbar appear

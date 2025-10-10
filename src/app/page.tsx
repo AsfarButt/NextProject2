@@ -13,7 +13,7 @@ export default function LandingPage(){
   // const [Right, setRight] = useState(0);
 
   useEffect(() => {
-      setTimeout(()=>settheme(true),3400);
+      setTimeout(()=>settheme(true),4100);
   },[])
 
   return(<div className={`relative w-screen h-screen bg-white before:absolute before:z-0 before:w-full before:bg-black
@@ -21,7 +21,6 @@ export default function LandingPage(){
     <Header className=""/>
     <Writing />
     <Scroller/>
-    {/* <Scroller2 ScrollLeft={Left} ScrollRight={Right}/> */}
 
   </div>)
 
