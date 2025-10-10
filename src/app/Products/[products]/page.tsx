@@ -4,8 +4,9 @@ import MyImage from "./myimage";
 
 export default async function Products({ params }: { params: { products: string } }) {   
   
-  // const text = await 
-  
+   const text = await fetch(`/Outfit-M/${params.products}/text.txt`).then((res)=> res.text());
+   console.log(text);
+                                                //Join this text file to pogram
   //Do this make it a clone of outfitters 
   return (
     <div className="w-screen h-auto bg-black/20 flex flex-col justify-center text-xl items-center">
