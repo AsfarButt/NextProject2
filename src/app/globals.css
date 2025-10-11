@@ -8,3 +8,7 @@
      background-color:black;
      /* border-radius:100%;  */
 } 
+.radiobutton{
+    appearance: none;
+    
+}

@@ -18,11 +18,11 @@ export default async function Products({ params }: { params: { products: string 
       
       <div className="relative w-full h-full flex flex-row">
         {/* Image Section */}
-        <div className="relative w-[45%] h-300 bg-red-400/30 flex justify-end items-center border-r border-gray-400/80">
+        <div className="relative w-[47%] h-300 bg-red-400/30 flex justify-end items-center border-r border-gray-400/80">
           <MyImage itemname={params.products} />
         </div>
         {/* Description Section */}
-        <div className="relative w-[55%] h-300 bg-blue-500/30">
+        <div className="relative w-[53%] h-300 bg-blue-500/30">
           <MyDescription text={FileContent}/>
         </div>
       </div>
