@@ -15,9 +15,9 @@ export default function MyImage({itemname}:{itemname: string}){
         }
 
 
-    return(<div className="scrollableelement relative min-w-130 w-[70%] h-200 bg-white border border-black flex flex-col overflow-y-scroll" onScroll={(e) => ItScrolled(e)}>
+    return(<div className="scrollableelement relative min-w-160 w-[80%] mr-[2px] h-260 bg-white flex flex-col overflow-y-scroll" onScroll={(e) => ItScrolled(e)}>
         <div className="relative">
-             {Outfits.map((element) => (<img className="relative flex-none w-full h-200 pointer-events-none border borderblack/80" key={element} src={element} alt={element}/>))} 
+             {Outfits.map((element) => (<img className="relative flex-none w-full h-260 pointer-events-none" key={element} src={element} alt={element}/>))} 
         </div>
     </div>)
 }
