@@ -9,12 +9,13 @@ export async function TextGetter(){
 
 export default async function Products({ params }: { params: { products: string } }) {   
   const FilePath = path.join(process.cwd(),"public","Outfit-M",params.products,"text.txt");
-
   const FileContent = await fs.promises.readFile(FilePath,"utf8");
+  let MyText = "";
 
   //Do this make it a clone of outfitters 
   return (
-    <div className="w-screen h-auto bg-black/20 flex flex-col justify-center text-xl items-center">
+    <div className="relative w-screen h-auto">
+      <div className="relative w-full h-full bg-black/20 flex flex-col justify-center text-xl items-center">
       
       <div className="relative w-full h-full flex flex-row">
         {/* Image Section */}
@@ -28,6 +29,7 @@ export default async function Products({ params }: { params: { products: string 
       </div>
       <div className="relative w-full h-70 bg-black/30">Footer</div>
 
+    </div>
     </div>
   );
 }
