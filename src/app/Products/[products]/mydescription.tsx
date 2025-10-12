@@ -22,10 +22,13 @@ export default function MyDescription({text}:{text:string}){             //carry
     const Lines = text.split("\n");
     const [selectedState, setselectedState] = useState(0);
     const ButtonRef = useRef<(HTMLDivElement | null)[]>([]);
-    const [SideViewText, setSideViewText ] = useState("");
+    const [SideViewText, setSideViewText ] = useState(" ");
+    const [SideViewUpdate, setSideViewUpdate] = useState(1);
 
-    function SideViewFunc(index: number){    //Create another component use for side view but remember this is pending task tomorrow also got to do a new one 
+    function SideViewFunc(index: number){ 
+        // console.log("side view click");   //Create another component use for side view but remember this is pending task tomorrow also got to do a new one 
         setSideViewText(Lines[6+index]);
+        setSideViewUpdate(e => e+1);
     }
 
     return(
@@ -48,12 +51,12 @@ export default function MyDescription({text}:{text:string}){             //carry
         <div className={`${montserrat.className} text-[16px] mb-12`}><h1 className={`font-semibold text-[20px] font-sans inline mr-8`}>GENDER</h1>{Lines[6]}</div>
 
         <div className={`relative w-[90%] mb-12 h-15 flex justify-center items-center text-[16px] hover:border-gray-900/80 ${montserrat.className} border border-gray-700/80 rounded-sm`}>Add to Basket</div>
-        <div className={`relative h-10 w-[90%] mb-3 text-[16px] flex flex-row z-2 justify-between ${montserrat.className}`} onClick={() => SideViewFunc(1)}><h1>PRODUCT DETAIL & COMPOSITION</h1><h1>▼</h1></div>
-        <div className={`relative h-10 w-[90%] mb-3 text-[16px] flex flex-row z-2 justify-between ${montserrat.className}`} onClick={() => SideViewFunc(2)}><h1>DELIVERIES & RETURNS</h1><h1>▼</h1></div>
-        <div className={`relative h-10 w-[90%] mb-3 text-[16px] flex flex-row z-2 justify-between ${montserrat.className}`} onClick={() => SideViewFunc(3)}><h1>SPECIAL RETURN CONDITIONS</h1><h1>▼</h1></div>
+        <div className={`relative h-8 w-[90%] mb-3 cursor-pointer text-[16px] flex flex-row z-2 justify-between ${montserrat.className}`} onClick={() => SideViewFunc(1)}><h1>PRODUCT DETAIL & COMPOSITION</h1><h1>▼</h1></div>
+        <div className={`relative h-8 w-[90%] mb-3 cursor-pointer text-[16px] flex flex-row z-2 justify-between ${montserrat.className}`} onClick={() => SideViewFunc(2)}><h1>DELIVERIES & RETURNS</h1><h1>▼</h1></div>
+        <div className={`relative h-8 w-[90%] mb-3 cursor-pointer text-[16px] flex flex-row z-2 justify-between ${montserrat.className}`} onClick={() => SideViewFunc(3)}><h1>SPECIAL RETURN CONDITIONS</h1><h1>▼</h1></div>
      
         </div>
-        <SideView Text={SideViewText}/> 
+        <SideView Text={SideViewText} update={SideViewUpdate}/> 
         </div>)
 
 }

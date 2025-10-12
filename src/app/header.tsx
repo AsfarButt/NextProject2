@@ -1,9 +1,9 @@
 import {STIX_Two_Text} from "next/font/google";
-import {Cormorant_Garamond} from "next/font/google";
+import {Prata} from "next/font/google";
 
-const cormorant = Cormorant_Garamond({
+const cormorant = Prata({
     subsets: ['latin'],
-    weight: '500',
+    weight: '400',
     style: 'normal'
 })
 
