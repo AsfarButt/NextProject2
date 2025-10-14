@@ -12,8 +12,7 @@ export default function MyImage({itemname}:{itemname: string}){
                     `/Outfit-M/${itemname}/pic3.webp`,
                     `/Outfit-M/${itemname}/pic4.webp`,
                     `/Outfit-M/${itemname}/pic5.webp`,
-                    `/Outfit-M/${itemname}/pic6.webp`,
-                    `/Outfit-M/${itemname}/pic7.jpg`];
+                    `/Outfit-M/${itemname}/pic6.webp`];
 
     function ImageScroll(e: React.UIEvent<HTMLDivElement>){
         // console.log(e.currentTarget.scrollTop);
