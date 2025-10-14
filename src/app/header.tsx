@@ -1,7 +1,7 @@
 import {STIX_Two_Text} from "next/font/google";
 import {Prata} from "next/font/google";
 
-const cormorant = Prata({
+const prata = Prata({
     subsets: ['latin'],
     weight: '400',
     style: 'normal'
@@ -23,7 +23,7 @@ export default function Header({className}: {className:string}){
         <div className="relative flex flex-row items-center bg-white mix-blend-difference [-webkit-background-clip:text]">
         <div className="relative w-10 h-10 [mask-image:url('/Vionne1.png')] [mask-repeat:no-repeat] [mask-size:cover] bg-center 
         bg-inherit" />
-        <div className={`${cormorant.className} pt-1 text-[26px] text-transparent [background-clip:text]
+        <div className={`${prata.className} pt-1 text-[26px] text-transparent [background-clip:text]
          [-webkit-text-fill-color:transparent] bg-cover bg-inherit`}>VIONNE</div>
         </div>
 
