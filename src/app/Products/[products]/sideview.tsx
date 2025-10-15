@@ -12,8 +12,14 @@ export default function SideView({Text, update}:{Text: string, update: number}){
     const [MyText, setMyText] = useState<any[]>([]);
 
     useEffect(() => {
+        console.log(Text);
+        try{
         const lines = Text.split("(hello)");
         setMyText(lines);
+        }
+        catch(err){
+            console.log("lines is undefined");
+        }
         console.log("Side view");
         console.log(MyText);
         if(MyText.length !== 0){
@@ -33,7 +39,7 @@ export default function SideView({Text, update}:{Text: string, update: number}){
         setTimeout(()=>{container.current?.classList.add("hidden")},600)
     }
 
-    return(<div className="absolute -top-40 -left-[90%] w-screen h-screen backdrop-blur-sm transition-all duration-600 z-5 hidden" ref={container} onClick={TurnOff}>
+    return(<div className="absolute top-0 -left-[90%] w-screen h-screen backdrop-blur-sm transition-all duration-600 z-5 hidden" ref={container} onClick={TurnOff}>
         <div className={`sideview absolute top-0 px-8 pt-12 right-0 translate-x-150 transition-all duration-800 ease-out w-150 h-full border-box
             ${montserrat.className} bg-white/90 z-6`} onClick={(e) => e.stopPropagation()}>
         <div className="absolute top-4 right-10 text-4xl font-regular rotate-z-45 cursor-pointer" onClick={TurnOff}>+</div>

@@ -18,7 +18,7 @@ export default async function Products({ params }: { params: { products: string 
 
   //Do this make it a clone of outfitters 
   return (
-    <div className="mainbody relative w-screen h-screen overflow-y-scroll">
+    <div className="mainbody relative w-screen h-screen overflow-y-scroll overflow-x-hidden">
       <div className="relative w-full h-auto flex flex-col justify-center text-xl items-center">
       <div className="relative w-full h-auto flex flex-row">
         {/* Image Section */}

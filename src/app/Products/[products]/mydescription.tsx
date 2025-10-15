@@ -2,6 +2,7 @@
 import React,{useRef, useState, useEffect} from "react";
 import {Space_Grotesk, Montserrat, Sansation} from "next/font/google";
 import SideView from "./sideview";
+import {useRouter} from "next/navigation";
 
 const spacegrotesk = Space_Grotesk({
     subsets:['latin'],
@@ -18,21 +19,36 @@ const sansation = Sansation({
     weight:['400','700'],
 })
 
-export default function MyDescription({text}:{text:string}){             //carry on from here
+export default function MyDescription({text}:{text:string}){            
     const Lines = text.split("\n");
+    const router = useRouter();
     const [selectedState, setselectedState] = useState(0);
     const ButtonRef = useRef<(HTMLDivElement | null)[]>([]);
     const [SideViewText, setSideViewText ] = useState(" ");
     const [SideViewUpdate, setSideViewUpdate] = useState(1);
 
-    function SideViewFunc(index: number){ 
-        // console.log("side view click");   //Create another component use for side view but remember this is pending task tomorrow also got to do a new one 
+    function SideViewFunc(index: number){  
+        console.log(Lines);
+        console.log(Lines[6+index]);
         setSideViewText(Lines[6+index]);
         setSideViewUpdate(e => e+1);
     }
 
+    useEffect(()=>{console.log(SideViewText)},[SideViewText])
+
+    function HomeNavigate(){
+        router.push("/Home");
+    }
+
     return(
     <div className="relative w-full h-full">
+        <div className="relative top-0 w-full h-20 z-5">
+        <div className="absolute right-[5%] mt-6 flex gap-5">
+            <img src="/Home.png" alt="home icon" className="w-10 h-10" onClick={HomeNavigate}/>    
+            <img src="/search.png" alt="search icon" className="mt-1 w-9 h-9"/>    
+            <img src="/menu2.png" alt="menu icon" className="mt-1 w-9 h-10"/>    
+        </div>   
+        </div>
         <div className="relative mt-40 ml-[20%]  max-w-170 w-[80%]">
         <h1 className={`relative ${spacegrotesk.className} font-regular text-[28px] mb-3`}>{Lines[0]}</h1>
         <h1 className={`relative ${spacegrotesk.className} font-light text-[12px] mb-12`}>{Lines[1]}</h1>

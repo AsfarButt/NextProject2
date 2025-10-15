@@ -30,7 +30,8 @@ export default function Header({className}: {className:string}){
         {/* Right Side */}
         <div className="relative flex flex-row flex-shrink-0 gap-3">
             <div className="relative flex-shrink-0 w-10 h-10 flex justify-center items-center rounded-full bg-black/90 border border-white/80">
-            <div className="w-4 h-4 bg-white [mask-image:url('/square2.png')] [mask-size:cover]" />
+            <div className="w-7 h-7 bg-gray-200 [mask-image:url('/home.png')] [mask-size:cover]" />
+            {/* I could have put a onClick on it to make it navigate to /Home but that will cause it to become a CRC and loose all Server Comp advantages */}
             </div>
             <div className="relative flex-shrink-0 w-10 h-10 flex justify-center items-center rounded-full bg-black/90 border border-white/80">
             <div className="w-2/5 h-2/5 bg-white [mask-image:url('/bag.png')] [mask-size:cover]" />

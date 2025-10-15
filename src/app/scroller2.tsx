@@ -1,10 +1,13 @@
+"use client";
 import React,{useEffect, useRef, useState} from "react";
+import {useRouter} from "next/navigation";
 
 
 
 export default function Scroller2({Scroll}:{Scroll:string}){
 
     const container = useRef<HTMLDivElement | null>(null);
+    const router = useRouter();
 
     const Outfits = [
     ["/Outfit-M/outfit1.png", "Classic White Tee", "$18","/Background2/bg-1.png"],
@@ -29,12 +32,18 @@ export default function Scroller2({Scroll}:{Scroll:string}){
         },3400)
     },[])
 
-    return(<div className="relative mt-60 w-full h-60 flex justify-center transition-all duration-800" ref={container}>
+    function RedirectFunc(index: number){
+        console.log("redirect func in process");
+        const item = "item"+String(index+1);
+        router.push(`./Products/${item}`);
+    }
+
+    return(<div className="relative mt-60 w-full h-60 flex justify-center transition-all duration-800 z-100" ref={container}>
         <div className="relative w-410 h-full flex flex-row">
             {Outfits.map((element, index) => 
-                (<div className="relative h-full flex-none flex flex-col w-82 overflow-hidden" key={index}>
+                (<div className="relative h-full flex-none flex flex-col w-82 overflow-hidden" key={index} onClick={() => RedirectFunc(index)}>
                     <img src={element[0]} className="relative z-1 w-full top-[-38px]"/>
-                    <img src={element[3]} className="absolute z-0 inset-0 blur-[1px] brightness-75 opacity-90" alt={`${index+1}`}/>
+                    <img src={element[3]} className="absolute z-0 inset-0 blur-[1px] brightness-75 opacity-90 pointer-events-none" alt={`${index+1}`}/>
                     <div className="absolute text-xl bottom-0 h-[50%] z-2 w-full bg-black text-white/80 font-sans">
                     <h1>{element[1]}</h1>
                     <h2 className="text-lg">{element[2]}</h2></div>

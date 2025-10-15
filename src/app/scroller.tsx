@@ -1,5 +1,6 @@
 "use client";
 import React,{useRef, useState, useEffect, useLayoutEffect} from "react";
+import {useRouter} from "next/navigation";
 
 type outfits = {
     active: boolean,
@@ -8,22 +9,23 @@ type outfits = {
 }
 
 export default function Scroller(){
-                                              
+
+    const router = useRouter();
+                                          
     const outfitgender = "Outfit-M";   //Use this to toggle bw clothes;
 
     const container = useRef<HTMLDivElement | null>(null);
     const Scroller2ref = useRef<HTMLDivElement | null>(null);
-
     const [bgactive, setbgactive] = useState(true);
-
-    const bgcolors = [`${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-1.png')] rotate-y-35 -translate-z-20`,
+    const bgcolors = [
+        `${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-1.png')] rotate-y-35 -translate-z-20`,
                     `${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-2.png')] rotate-y-20 -translate-z-20`,
                     `${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-3.png')] rotate-y-0 -translate-z-20`,
                     `${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-4.png')] -rotate-y-20 -translate-z-20`,
                     `${(bgactive)? "opacity-100":"opacity-0"} bg-[url('/Background/bg-5.png')] -rotate-y-20 -translate-z-20`,
                      null, null, null, null, null, null, null];
-
-    const colors = ["translate-y-150 translate-x-160 opacity-0 ml-[30px]",
+    const colors = [
+        "translate-y-150 translate-x-160 opacity-0 ml-[30px]",
                     "translate-y-8 scale-110 translate-y-150 translate-x-80 opacity-0",
                     "translate-y-32 scale-118 translate-y-150 opacity-0",
                     "translate-y-8 scale-110 translate-y-150 -translate-x-80 opacity-0",
@@ -31,8 +33,8 @@ export default function Scroller(){
                     "opacity-0", "opacity-0",
                     "opacity-0", "opacity-0",
                     "opacity-0", "opacity-0",
-                    "opacity-0"];
-
+                    "opacity-0"
+                ];
 const OutfitsScrl2 = [
   [`/${outfitgender}/outfit1.png`, "Classic White Tee", "$18", "4.5", "/Background2/bg-1.png"],
   [`/${outfitgender}/outfit2.png`, "Black Graphic Tee", "$22", "4.2", "/Background2/bg-2.png"],
@@ -47,7 +49,6 @@ const OutfitsScrl2 = [
   [`/${outfitgender}/outfit11.png`, "Tie-Dye Tee", "$23", "4.2", "/Background2/bg-11.png"],
   [`/${outfitgender}/outfit12.png`, "Athletic Fit Tee", "$30", "4.9", "/Background2/bg-12.png"],
 ];
-
     const Outfits = useRef<outfits[]>([
         {active:false, src:`/${outfitgender}/outfit1.png`, inputref: null},
         {active:false, src:`/${outfitgender}/outfit2.png`, inputref: null},
@@ -223,6 +224,12 @@ const OutfitsScrl2 = [
                 element.inputref?.classList.add("before:opacity-0");
             })},3200)
     },[])
+
+    function ProductClick(index: number){
+        console.log("naviagation in progress");
+        router.push('/Home');
+        router.push(`/Products/item${index+1}`);
+    }
     
 
 
@@ -234,7 +241,7 @@ const OutfitsScrl2 = [
             {Outfits.current.map((element, index) =>(
                 <div className={`relative flex-none flex justify-center items-center w-70 h-full
                 origin-top rounded-lg [transform-style:preserve-3d] [perspective:1000px]
-                ${colors[index]}`} key={index}  
+                ${colors[index]}`} key={index}  onClick={() => ProductClick(index)}
                 ref={(el) => {Outfits.current[index].inputref = el}}
                 >   <div className={`absolute inset-0 rounded-xl transition-all duration-800 ${bgcolors[index]}`}></div>
                     <img className="relative w-full h-auto" src={element.src} alt={element.src} />
@@ -251,7 +258,7 @@ const OutfitsScrl2 = [
     <div className="relative border border-transparent opacity-0 w-full h-60 flex-none flex justify-center transition-transform duration-1100" ref={Scroller2ref}>
             <div className="relative w-425 h-full flex flex-row transition-all duration-800">
                 {OutfitsScrl2.map((element, index) => 
-                    (<div className="relative h-full flex-none flex flex-col w-85 overflow-hidden" key={index}>
+                    (<div className="relative h-full flex-none flex flex-col w-85 overflow-hidden" key={index} onClick={() => ProductClick(index)}>
                         <div className=""></div>   
                         {/* here make a hear tricon already downloaded and onClick change its src to fully filled one also do this without state using atts of onClick eg: (el) => el.currentTarget.bg.src ="" ijgiseagie etc etc */}
                         <img src={element[0]} className="relative z-1 w-full top-[-38px]"/>
