@@ -1,6 +1,7 @@
-"use client";
+"use client";4
 import React,{useState, useEffect} from "react";
 import Product from "./product";
+import Footer from '../Products/[products]/footer';
 import {Prata} from "next/font/google";
 
 const prata = Prata({
@@ -40,7 +41,7 @@ export default function Home(){
         {ProductsData.map((element, index) => (
             <Product proddescription={element} sentindex={index} key={index}/>
         ))}
-        </div>
-        <div className="relative w-full h-80 bg-blue-700/20"></div>
+     </div>
+    <Footer />
     </div>)
 }

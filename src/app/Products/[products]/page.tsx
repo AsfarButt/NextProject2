@@ -11,12 +11,14 @@ const cormorant = Prata({
     weight: ['400']
 })
 
-export default async function Products({ params }: { params: { products: string } }) {  
+export default async function Products({params}:{params: Promise<{products: string}>}) {  
 
-  const FilePath = await path.join(process.cwd(),"public","Outfit-M",params.products,"text.txt");
+    const AwaitedParams = await params;
+    
+  const FilePath = path.join(process.cwd(),"public","Outfit-M",AwaitedParams.products,"text.txt");
   const FileContent = await fs.promises.readFile(FilePath,"utf8");
 
-  //Do this make it a clone of outfitters 
+  //Do this make it a clone of outfitters npm 
   return (
     <div className="mainbody relative w-screen h-screen overflow-y-scroll overflow-x-hidden">
       <div className="relative w-full h-auto flex flex-col justify-center text-xl items-center">
@@ -26,7 +28,7 @@ export default async function Products({ params }: { params: { products: string 
           <div className={`absolute top-4 left-6 text-4xl font-regular flex ${cormorant.className}`}>
             <img src='/Vionne1.png' alt="vionne_img" className="relative w-10 h-10"/>
             Vionne</div>
-          <MyImage itemname={params.products} />
+          <MyImage itemname={AwaitedParams.products} />
         </div>
         {/* Description Section */}
         <div className="relative w-[53%] h-360">

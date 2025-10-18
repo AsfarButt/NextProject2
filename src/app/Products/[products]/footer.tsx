@@ -10,7 +10,7 @@ export default function Footer(){
 
     return(<div className="w-full h-100 flex justify-between bg-black">
         <div className="relative pt-13 pl-8 flex flex-col gap-1.5 text-[18px] text-white/80 border-box font-semibold">
-        <h1>FAQ'S</h1>
+        <h1>FAQ&apos;S</h1>
         <h1>Log In/Sign Up</h1>
         <h1>How To Buy</h1>
         <h1>Payment</h1>
@@ -29,11 +29,3 @@ export default function Footer(){
         </div>
     </div>)
 }
-
-
-// FAQ'S
-// Log In/Sign Up
-// How To Buy
-// Payment
-// Shipping & Deliveries
-// Exchange & Returns

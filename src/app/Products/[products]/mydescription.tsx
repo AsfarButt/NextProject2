@@ -1,6 +1,6 @@
 "use client";
 import React,{useRef, useState, useEffect} from "react";
-import {Space_Grotesk, Montserrat, Sansation} from "next/font/google";
+import {Space_Grotesk, Montserrat, Poppins} from "next/font/google";
 import SideView from "./sideview";
 import {useRouter} from "next/navigation";
 
@@ -14,7 +14,7 @@ const montserrat = Montserrat({
     weight:['300','400','500']
 })
 
-const sansation = Sansation({
+const poppins = Poppins({
     subsets:['latin'],
     weight:['400','700'],
 })
@@ -53,7 +53,7 @@ export default function MyDescription({text}:{text:string}){
         <h1 className={`relative ${spacegrotesk.className} font-regular text-[28px] mb-3`}>{Lines[0]}</h1>
         <h1 className={`relative ${spacegrotesk.className} font-light text-[12px] mb-12`}>{Lines[1]}</h1>
         <h1 className={`font-sans font-bold mb-16`}>{Lines[2]}</h1>
-        <div className={`${montserrat.className} text-[16px] mb-12 leading-6`}><h2 className={`text-xl ${sansation.className} mb-3`}>Description</h2>{Lines[3]}</div>
+        <div className={`${montserrat.className} text-[16px] mb-12 leading-6`}><h2 className={`text-xl ${poppins.className} mb-3`}>Description</h2>{Lines[3]}</div>
         <div className={`${montserrat.className} text-[16px] mb-12`}>Model Details: <p className={`inline`}>{Lines[4]}</p></div>
         <div className={`${montserrat.className} text-[16px] mb-3`}><h1 className={`font-semibold text-[20px] font-sans inline mr-8`}>FIT</h1>{Lines[5]}</div>
         <div className={`${montserrat.className} text-[16px] mb-3`}><h1 className={`font-semibold text-[20px] font-sans inline mr-8`}>SIZE</h1>

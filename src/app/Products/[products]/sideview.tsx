@@ -9,7 +9,7 @@ const montserrat = Montserrat({
 
 export default function SideView({Text, update}:{Text: string, update: number}){        //Side view not working no re-render occur
     const container = useRef<HTMLDivElement | null>(null);
-    const [MyText, setMyText] = useState<any[]>([]);
+    const [MyText, setMyText] = useState<string[]>([]);
 
     useEffect(() => {
         console.log(Text);
@@ -20,6 +20,7 @@ export default function SideView({Text, update}:{Text: string, update: number}){
         catch(err){
             console.log("lines is undefined");
         }
+
         console.log("Side view");
         console.log(MyText);
         if(MyText.length !== 0){
