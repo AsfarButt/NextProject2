@@ -237,7 +237,7 @@ const OutfitsScrl2 = [
     return(<div className="absolute -bottom-60 w-full h-screen flex justify-center flex-col items-top transition-all duration-800" ref={container}>
 
         <div className="relative transition-all mt-10 mb-10 duration-800 w-full h-200 flex-none flex items-top justify-center border-box" ref={scroller}>
-            <div className="relative flex flex-row gap-15 w-425 h-100 transition-transform duration-1000 ease-in-out" ref={Scrollerref}>
+            <div className="relative flex flex-row gap-15 w-425 h-100 transition-transform duration-1200 ease-in-out" ref={Scrollerref}>
             {Outfits.current.map((element, index) =>(
                 <div className={`relative flex-none flex justify-center items-center w-70 h-full
                 origin-top rounded-lg [transform-style:preserve-3d] [perspective:1000px]
