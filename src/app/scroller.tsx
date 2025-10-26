@@ -71,7 +71,7 @@ const OutfitsScrl2 = [
          const position = useRef(0);
 
         function OnStartUp(){
-        console.log("outstartup should work");
+        console.log("outstartup should work"); 
         index.current = Outfits.current.findIndex((element) => element.active);
         if(index.current !== null){
             console.log("active index: ",index.current);
@@ -192,8 +192,8 @@ const OutfitsScrl2 = [
             setTimeout(()=>{
                 if(container.current && scroller.current && Scroller2ref.current){
                     // container.current.classList.replace("mt-80","mt-20");
-                    container.current.classList.replace("-bottom-60","bottom-0");
-                    scroller.current.classList.remove("mt-10");
+                    container.current.classList.replace("-bottom-60","-bottom-20");
+                    // scroller.current.classList.remove("mt-10");
                     Scroller2ref.current.classList.remove("opacity-0");
 
                     // Scrollerref.current.classList.remove("scale-105");
@@ -234,7 +234,7 @@ const OutfitsScrl2 = [
 
 
 
-    return(<div className="absolute -bottom-60 w-full h-screen flex justify-center flex-col items-top transition-all duration-800 " ref={container}>
+    return(<div className="absolute -bottom-60 w-full h-screen flex justify-center flex-col items-top transition-all duration-800" ref={container}>
 
         <div className="relative transition-all mt-10 mb-10 duration-800 w-full h-200 flex-none flex items-top justify-center border-box" ref={scroller}>
             <div className="relative flex flex-row gap-15 w-425 h-100 transition-transform duration-1000 ease-in-out" ref={Scrollerref}>
@@ -255,7 +255,7 @@ const OutfitsScrl2 = [
             </div>
         </div>
 
-    <div className="relative border border-transparent opacity-0 w-full h-60 flex-none flex justify-center transition-transform duration-1100" ref={Scroller2ref}>
+    <div className="absolute bottom-0 border border-transparent opacity-0 w-full h-60 flex-none flex justify-center transition-transform duration-1100" ref={Scroller2ref}>
             <div className="relative w-425 h-full flex flex-row transition-all duration-800">
                 {OutfitsScrl2.map((element, index) => 
                     (<div className="relative h-full flex-none flex flex-col w-85 overflow-hidden" key={index} onClick={() => ProductClick(index)}>
